@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{fancyvrb}
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\title{Отчет по практической работе \\ «Численное дифференцирование» \\ (Вариант 8)}
+\author{Выполнил: Платоненко Владислав Денисович \\ Группа: 1 УТС}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Задание}
+Реализовать алгоритм вычисления первой производной функции в точке тремя методами:
+\begin{enumerate}
+    \item Метод правой разности.
+    \item Метод центральной разности.
+    \item Метод левой разности.
+\end{enumerate}
+В качестве тестируемой функции использовать $f(x) = x^2$. Количество точек и шаг задаются пользователем.
+
+\section{Теоретическая часть}
+Для численного нахождения производной функции $f(x)$ в точке $x$ с шагом $dX$ применяются следующие формулы:
+
+\begin{itemize}
+    \item \textbf{Правая разностная производная (Метод 1):}
+    \begin{equation}
+        f'(x) \approx \frac{f(x + dX) - f(x)}{dX}
+    \end{equation}
+    
+    \item \textbf{Центральная разностная производная (Метод 2):}
+    \begin{equation}
+        f'(x) \approx \frac{f(x + dX) - f(x - dX)}{2 \cdot dX}
+    \end{equation}
+    
+    \item \textbf{Левая разностная производная (Метод 3):}
+    \begin{equation}
+        f'(x) \approx \frac{f(x) - f(x - dX)}{dX}
+    \end{equation}
+\end{itemize}
+
+\section{Реализация и контроль ввода}
+Программа написана на языке C++. Для обеспечения надежности реализован контроль вводимых данных:
+\begin{itemize}
+    \item Проверка типа данных при вводе $x$ и $dX$ (защита от ввода букв с помощью очистки буфера \texttt{cin.clear()} и \texttt{cin.ignore()}).
+    \item Проверка значения шага $dX$ (шаг не должен быть равен нулю для избежания деления на ноль).
+\end{itemize}
+
+\newpage
+\section{Исходный код программы}
+Ниже представлен полный исходный код разработанной программы:
+
+\begin{Verbatim}[frame=single, numbers=left, tabsize=4]
+/*Платоненко Владислав Денисович 1 УТС Вариант 8 */
+#include <iostream>
+#include <cmath>
+#include <clocale>
+
+using namespace std;
+
+double f(double x) {
+    return x * x;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    double x, dX;
+    
+    while (true) {
+        cout « "Введите число X = " « endl;
+        if (cin » x) {
+            break;
+        }
+        else {
+            cout « "Введено не число" « endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+    }
+    
+    while (true) {
+        cout « "Введите ненулевое число dX = " « endl;
+        if (cin » dX && dX != 0) {
+            break;
+        }
+        else {
+            cout « "dX должно быть числом, но не 0" « endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+    }
+    
+    double Pravaya_formula = (f(x + dX) - f(x)) / dX;
+    double Centralnaya_formula = (f(x + dX) - f(x - dX)) / (2 * dX);
+    double Levaya_formula = (f(x) - f(x - dX)) / dX;
+    
+    cout « "Правая разностная производная = " « Pravaya_formula « endl;
+    cout « "Центральная разностная производная = " « Centralnaya_formula « endl;
+    cout « "Левая разностная производная = " « Levaya_formula « endl;
+    
+    return 0;
+}
+\end{Verbatim}
+
+\end{document}
