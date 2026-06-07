@@ -7,24 +7,28 @@ double f(double x) {
 	return x * x;
 }
 int main() {
-	setlocale(LC_CTYPE, "rus");
+	setlocale(LC_ALL, "Russian");
 	double x, dX;
 	while (true) {
-		cout << "Введите число Х =  ";
+		cout << "Введите число Х =  " << endl;
 		if (cin >> x) {
 			break;
 		}
 		else {
 			cout << "Введено не число" << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
 		}
 	}
 	while (true) {
-		cout << "Введите ненулевое число dX = ";
+		cout << "Введите ненулевое число dX = " << endl;
 		if (cin >> dX && dX != 0) {
 			break;
 		}
 		else {
 			cout << "dX должно быть числом, но не 0" << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
 		}
 	}
 	double Pravaya_formula = (f(x + dX) - f(x)) / dX;
