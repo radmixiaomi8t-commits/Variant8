@@ -60,11 +60,10 @@
 Ниже представлен полный исходный код разработанной программы:
 
 \begin{Verbatim}[frame=single, numbers=left, tabsize=4]
-/*Платоненко Владислав Денисович 1 УТС Вариант 8 */
+
 #include <iostream>
 #include <cmath>
 #include <clocale>
-
 using namespace std;
 
 double f(double x) {
@@ -86,7 +85,6 @@ int main() {
             cin.ignore(1000, '\n');
         }
     }
-    
     while (true) {
         cout « "Введите ненулевое число dX = " « endl;
         if (cin » dX && dX != 0) {
@@ -98,7 +96,6 @@ int main() {
             cin.ignore(1000, '\n');
         }
     }
-    
     double Pravaya_formula = (f(x + dX) - f(x)) / dX;
     double Centralnaya_formula = (f(x + dX) - f(x - dX)) / (2 * dX);
     double Levaya_formula = (f(x) - f(x - dX)) / dX;
