@@ -1,4 +1,3 @@
-/*Платоненко Владислав Денисович 1 УТС Вариант 8 */
 #include <iostream>
 #include <cmath>
 #include <clocale>
