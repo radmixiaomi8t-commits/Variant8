@@ -10,7 +10,7 @@ int main() {
 	setlocale(LC_ALL, "Russian");
 	double x, dX;
 	while (true) {
-		cout << "Введите число Х =  " << endl;
+		cout << "Введите число Х =  ";
 		if (cin >> x) {
 			break;
 		}
@@ -21,7 +21,7 @@ int main() {
 		}
 	}
 	while (true) {
-		cout << "Введите ненулевое число dX = " << endl;
+		cout << "Введите ненулевое число dX = ";
 		if (cin >> dX && dX != 0) {
 			break;
 		}
